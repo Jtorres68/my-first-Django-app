@@ -9,7 +9,7 @@ from django.utils import timezone
 class Post(models.Model):
     realtor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)   #ForeignKey means link to another model
     address = models.CharField(max_length = 200)                                        #CharField means txt w/limited char
-    decription = models.TextField()                                                     #TextField means long text, unlimited
+    description = models.TextField()                                                     #TextField means long text, unlimited
     published_date = models.DateTimeField(blank = True, null = True)                    #DateTimeField is date and time
     
     def publish(self):
