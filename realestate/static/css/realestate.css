@@ -1,0 +1,11 @@
+body {
+    padding-left: 15px;
+}
+
+.border {
+    border: 1px solid grey; 
+}
+
+h1 {
+    font-family: 'Lobster'; 
+}

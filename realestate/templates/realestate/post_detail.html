@@ -1,0 +1,15 @@
+{% extends 'realestate/base.html' %}
+
+{% block content %}
+    <div class="post">
+        <h2>{{ post.address }}</h2>
+        
+        {% if post.published_date %}
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+        {% endif %}
+        
+        <p>{{ post.description|linebreaksbr }}</p>
+    </div>
+{% endblock %}

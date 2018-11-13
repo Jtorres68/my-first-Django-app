@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>My Real Estate App</title>
-    </head>
-    <body>
+{% extends 'realestate/base.html' %}
+
+{% block content %}
+    {% for post in posts %}
         <div>
-            <h1><a href="/">A Mock Real Estate Site</a></h1>
+            <!-- post.pk where pk means primary key and by default the key will be a number that increases each time by 1 for every post unless we specify one in the Post model -->
+            <h3><a href="{% url 'post_detail' pk=post.pk %}">Address: {{ post.address }}</a></h3>
+            <p>{{ post.published_date }}</p><br>
+            <p>{{ post.description|linebreaksbr }}</p>
         </div>
-        
-        {% for post in posts %}
-            <div>
-                <h3><a href="">Address: {{ post.address }}</a></h3>
-                <p>{{ post.published_date }}</p><br>
-                <p>{{ post.description|linebreaksbr }}</p>
-            </div>
-        {% endfor %}
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
