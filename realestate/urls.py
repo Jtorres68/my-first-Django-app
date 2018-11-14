@@ -7,4 +7,6 @@ urlpatterns = [
     path('post/new/', views.post_new, name='post_new'),  #url path to add new post
     path('post/<int:pk>/edit/', views.post_edit, name='post_edit'), #url path to edit currently existing file
     path('post/<pk>/remove', views.post_delete, name='post_delete'), #url path to remove a post
+    path(r'^post/(?P<pk>\d+)/comment/$', views.add_message, name='add_message'), #url path for consumer to send a message
+    path('post/Thank_you', views.Thank_you, name='Thank_you'), #Thank you message after sending interest
 ]

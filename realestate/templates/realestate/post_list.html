@@ -7,6 +7,7 @@
             <h3><a href="{% url 'post_detail' pk=post.pk %}">Address: {{ post.address }}</a></h3>
             <p>{{ post.published_date }}</p><br>
             <p>{{ post.description|linebreaksbr }}</p>
+            <p>This many people are interested: <a href="{% url 'post_detail' pk=post.pk %}">{{ post.comments.count }}</a></p>
         </div>
     {% endfor %}
 {% endblock %}

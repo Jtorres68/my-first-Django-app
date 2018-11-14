@@ -18,3 +18,18 @@ class Post(models.Model):
         
     def __str__(self):
         return self.address
+    
+    
+#messages if interested in house
+class Comment(models.Model):
+    post = models.ForeignKey('realestate.Post', on_delete=models.CASCADE, related_name='comments')
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length=200)
+    text = models.TextField()
+    sent_date = models.DateTimeField(default=timezone.now)
+    
+    def seen(self):
+        self.save()
+        
+    def __str__(self):
+        return self.text

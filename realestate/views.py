@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Post
+from .models import Post, Comment
 from django.utils import timezone
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
@@ -57,6 +57,21 @@ def post_delete(request, pk):
     post.delete()
     return redirect('post_list')
     
+def add_message(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            return redirect('Thank_you')
+    else:
+        form = CommentForm()
+    return render(request, 'realestate/add_message.html', {'form': form})
+
+def Thank_you(request):
+    return render(request, 'realestate/Thank_you.html')
     
         
     
