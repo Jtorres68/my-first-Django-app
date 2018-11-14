@@ -3,6 +3,7 @@ from .models import Post
 from django.utils import timezone
 from .forms import PostForm
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 #list of posts made
@@ -16,6 +17,7 @@ def post_detail(request, pk):
     return render(request, 'realestate/post_detail.html', {'post': post})
 
 #add a new post
+@login_required
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -31,6 +33,7 @@ def post_new(request):
     return render(request, 'realestate/post_edit.html', {'form': form})
 
 #edit currently existing post
+@login_required
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
@@ -46,4 +49,15 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
         
     return render(request, 'realestate/post_edit.html', {'form': form})
+
+#delete a post
+@login_required
+def post_delete(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.delete()
+    return redirect('post_list')
+    
+    
+        
+    
             

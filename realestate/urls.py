@@ -6,4 +6,5 @@ urlpatterns = [
     path('post/<int:pk>/', views.post_detail, name='post_detail'), #post/<int:pk>/ specifies a URL pattern such as http://127.0.0.1:8000/post/1/
     path('post/new/', views.post_new, name='post_new'),  #url path to add new post
     path('post/<int:pk>/edit/', views.post_edit, name='post_edit'), #url path to edit currently existing file
+    path('post/<pk>/remove', views.post_delete, name='post_delete'), #url path to remove a post
 ]

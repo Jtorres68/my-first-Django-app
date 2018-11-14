@@ -122,3 +122,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+
+#if the login page is accessed directly, it will redirect a successful login to the top-lvl index which is the homepage
+LOGIN_REDIRECT_URL = '/'
