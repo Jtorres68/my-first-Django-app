@@ -12,6 +12,17 @@ class Post(models.Model):
     description = models.TextField()                                                     #TextField means long text, unlimited
     published_date = models.DateTimeField(blank = True, null = True)                    #DateTimeField is date and time
     
+    onsale = 'On Sale'
+    contract_pending = 'Contract Pending'
+    sold = 'Sold'
+    sell_choices = (
+        (onsale, 'onsale'),
+        (contract_pending, 'contract_pending'),
+        (sold, 'sold'),
+    )
+    
+    seller = models.CharField(max_length = 16, choices = sell_choices, default = onsale)
+    
     def publish(self):
         self.published_date = timezone.now()
         self.save()
@@ -24,7 +35,7 @@ class Post(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey('realestate.Post', on_delete=models.CASCADE, related_name='comments')
     name = models.CharField(max_length=100)
-    email = models.CharField(max_length=200)
+    email = models.EmailField(max_length=200)   #EmailField is similar to CharField but uses an email validator
     text = models.TextField()
     sent_date = models.DateTimeField(default=timezone.now)
     

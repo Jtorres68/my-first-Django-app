@@ -6,7 +6,7 @@
             <!-- post.pk where pk means primary key and by default the key will be a number that increases each time by 1 for every post unless we specify one in the Post model -->
             <h3><a href="{% url 'post_detail' pk=post.pk %}">Address: {{ post.address }}</a></h3>
             <p>{{ post.published_date }}</p><br>
-            <p>{{ post.description|linebreaksbr }}</p>
+            <p>{{ post.seller }}</p>
             <p>This many people are interested: <a href="{% url 'post_detail' pk=post.pk %}">{{ post.comments.count }}</a></p>
         </div>
     {% endfor %}
