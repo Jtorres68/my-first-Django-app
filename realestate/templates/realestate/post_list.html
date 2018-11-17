@@ -1,7 +1,12 @@
 {% extends 'realestate/base.html' %}
 
 {% block content %}
-    {% for post in posts %}
+    <form method="GET">
+        {{ filter.form.as_p }}
+        <button type="submit" class="btn btn-default" value="{{ seller }}">{{ seller }}</button>
+    </form>
+    
+    {% for post in filter.qs %}
         <div>
             <!-- post.pk where pk means primary key and by default the key will be a number that increases each time by 1 for every post unless we specify one in the Post model -->
             <h3><a href="{% url 'post_detail' pk=post.pk %}">Address: {{ post.address }}</a></h3>

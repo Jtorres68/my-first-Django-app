@@ -4,12 +4,17 @@ from django.utils import timezone
 from .forms import PostForm, CommentForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from .filters import PostFilter
 
 # Create your views here.
 #list of posts made
 def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'realestate/post_list.html', {'posts': posts})
+    state = PostFilter(request.GET, queryset=Post.objects.all())
+    
+    return render(request, 'realestate/post_list.html', {'filter': state})
+    
+    #posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    #return render(request, 'realestate/post_list.html', {'posts': posts})
 
 #details of one post selected
 def post_detail(request, pk):
@@ -72,6 +77,12 @@ def add_message(request, pk):
 
 def Thank_you(request):
     return render(request, 'realestate/Thank_you.html')
+
+#trying to filter
+def product_state(request):
+    state = PostFilter(request.GET, queryset=Post.objects.all())
+    
+    return render(request, 'realestate/product_list.html', {'filter': state})
     
         
     

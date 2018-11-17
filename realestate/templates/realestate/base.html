@@ -15,18 +15,25 @@
         <!-- Font -->
         <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
         
+        
     </head>
     <body>
         <div class="page-header">
             <h1><a href="/">A Mock Real Estate Site</a></h1>
             
             {% if user.is_authenticated %}
-                <!-- click the link and it calls a view 'post_new' -->
-                <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a> 
+                <div class="add">
+                    <!-- click the link and it calls a view 'post_new' -->
+                    <a href="{% url 'post_new' %}" class="top-menu btn btn-primary"><span class="glyphicon glyphicon-plus"></span></a>
+                </div>
                 <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}" class="top-menu">Logout</a>)</small></p>
             {% else %}
                 <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
             {% endif %}
+            
+            <!-- <button class="btn btn-default" onclick="func()" id="onsale"></button> -->
+            
+            
             <div class="border"></div>
         </div>
         
@@ -39,5 +46,6 @@
                 </div>
             </div>
         </div>
+        
     </body>
 </html>
