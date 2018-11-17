@@ -80,7 +80,8 @@ def Thank_you(request):
 
 #trying to filter
 def product_state(request):
-    state = PostFilter(request.GET, queryset=Post.objects.all())
+    sell = Post.objects.all()
+    state = PostFilter(request.GET, queryset=sell)
     
     return render(request, 'realestate/product_list.html', {'filter': state})
     

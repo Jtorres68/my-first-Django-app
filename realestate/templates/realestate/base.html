@@ -19,20 +19,30 @@
     </head>
     <body>
         <div class="page-header">
-            <h1><a href="/">A Mock Real Estate Site</a></h1>
+            <nav class="navbar navbar-expand-lg">
+                <h1><a href="/" class="navbar-brand">A Mock Real Estate Site</a></h1>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        {% if user.is_authenticated %}
+                            <div class="add">
+                                <!-- click the link and it calls a view 'post_new' -->
+                                <a href="{% url 'post_new' %}" class="top-menu btn btn-primary"><span class="glyphicon glyphicon-plus"></span></a>
+                            </div>
+                            <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}" class="top-menu">Logout</a>)</small></p>
+                        {% else %}
+                            <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+                        {% endif %}
             
-            {% if user.is_authenticated %}
-                <div class="add">
-                    <!-- click the link and it calls a view 'post_new' -->
-                    <a href="{% url 'post_new' %}" class="top-menu btn btn-primary"><span class="glyphicon glyphicon-plus"></span></a>
+                        <!-- <button class="btn btn-default" onclick="func()" id="onsale"></button> -->
+                        <form method="GET" class="form-inline my-2 my-lg-0">
+                            <div class="form-control mr-sm-2" placeholder="all">
+                                {{ filter.form.as_table }} 
+                            </div>
+                            <button type="submit" class="btn btn-default" value="Filter">Filter</button>
+                        </form>
+                    </ul>
                 </div>
-                <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}" class="top-menu">Logout</a>)</small></p>
-            {% else %}
-                <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
-            {% endif %}
-            
-            <!-- <button class="btn btn-default" onclick="func()" id="onsale"></button> -->
-            
+            </nav>
             
             <div class="border"></div>
         </div>

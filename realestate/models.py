@@ -6,6 +6,7 @@ from django.utils import timezone
 
 #should create radio list for on sale, pending, sold
 #models.Model means that the Post is a Django model
+
 class Post(models.Model):
     realtor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)   #ForeignKey means link to another model
     address = models.CharField(max_length = 200)                                        #CharField means txt w/limited char
@@ -29,7 +30,7 @@ class Post(models.Model):
         
     def __str__(self):
         return self.address
-    
+
     
 #messages if interested in house
 class Comment(models.Model):
