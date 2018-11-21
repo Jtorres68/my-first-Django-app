@@ -5,43 +5,53 @@
     <head>
         <title>My Real Estate App</title>
         
-        <!--static css -->
-        <link rel="stylesheet" href="{% static 'css/realestate.css' %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Font -->
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
         
         <!--Bootstrap style -->
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         
-        <!-- Font -->
-        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <!--static css -->
+        <link rel="stylesheet" href="{% static 'css/realestate.css' %}" type="text/css">
         
         
     </head>
     <body>
-        <div class="page-header">
-            <nav class="navbar navbar-expand-lg">
-                <h1><a href="/" class="navbar-brand">A Mock Real Estate Site</a></h1>
+        <div class="page-header navbar navbar-inverse">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <h1><a href="/" class="navbar-brand" style="font-size: 50px;">A Mock Real Estate Site</a></h1>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        {% if user.is_authenticated %}
-                            <div class="add">
-                                <!-- click the link and it calls a view 'post_new' -->
-                                <a href="{% url 'post_new' %}" class="top-menu btn btn-primary"><span class="glyphicon glyphicon-plus"></span></a>
-                            </div>
-                            <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}" class="top-menu">Logout</a>)</small></p>
-                        {% else %}
-                            <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
-                        {% endif %}
-            
-                        <!-- <button class="btn btn-default" onclick="func()" id="onsale"></button> -->
-                        <form method="GET" class="form-inline my-2 my-lg-0">
-                            <div class="form-control mr-sm-2" placeholder="all">
-                                {{ filter.form.as_table }} 
-                            </div>
-                            <button type="submit" class="btn btn-default" value="Filter">Filter</button>
-                        </form>
+                    <ul class="nav navbar-nav">
+                        <li>
+                            {% if user.is_authenticated %}
+                                <div class="add">
+                                    <!-- click the link and it calls a view 'post_new' -->
+                                    <a href="{% url 'post_new' %}" class="top-menu btn btn-primary nav-link" onclick="myFunction()"><span class="glyphicon glyphicon-plus"></span></a>
+                                </div>
+                         </li>
+                        <li class="nav navbar-nav navbar-left">
+                                <p class="top-menu" style="color: white;">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}" class="top-menu nav-link">Logout</a>)</small></p>
+                            {% else %}
+                                <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+                            {% endif %}
+                        </li>
+                            <!-- <button class="btn btn-default" onclick="func()" id="onsale"></button> -->
+                            <form method="GET" class="navbar-form navbar-right">
+                                <div class="form-control mr-sm-2" placeholder="all">
+                                    {{ filter.form.as_table }} 
+                                    
+                                </div>
+                                <button type="submit" class="btn btn-default my-2 my-sm-0" value="Filter">Filter</button>
+                            </form>
+                        
+                            <!-- test -->
+                        <!--<a class="btn btn-danger" href="{% url 'post_sale' %}">Sale</a>-->
                     </ul>
                 </div>
+                
             </nav>
             
             <div class="border"></div>
@@ -50,12 +60,18 @@
         <div class="content container">
             <div class="row">
                 <div class="col-md-8">
-                <!-- This block content will contain html from another template that entends this html file -->
+                <!-- This block content will contain html from another template that extends this html file -->
                 {% block content %}
                 {% endblock %}
                 </div>
             </div>
         </div>
+        
+        <script>
+            function myFunction() {
+                document.getElementById("filter").style.display="none";
+            }
+        </script>
         
     </body>
 </html>

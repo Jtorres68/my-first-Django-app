@@ -3,7 +3,19 @@
 {% block content %}
     <h2>New post</h2>
     <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
+        <div class="container">
+            <div class="row">
+                {% for field in form %}
+                    <table>
+                        <tr>
+                            <div class="formfield" style="font-size: 15px;">
+                                <b>{{ field.label_tag }}</b> <br> {{ field }} <br><br>
+                            </div>
+                        </tr>
+                </table>
+                {% endfor %}
+            </div>
+        </div>
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
 {% endblock %}

@@ -9,7 +9,8 @@ from .filters import PostFilter
 # Create your views here.
 #list of posts made
 def post_list(request):
-    state = PostFilter(request.GET, queryset=Post.objects.all())
+    list = Post.objects.all()
+    state = PostFilter(request.GET, queryset=list)
     
     return render(request, 'realestate/post_list.html', {'filter': state})
     
@@ -79,12 +80,11 @@ def Thank_you(request):
     return render(request, 'realestate/Thank_you.html')
 
 #trying to filter
-def product_state(request):
-    sell = Post.objects.all()
-    state = PostFilter(request.GET, queryset=sell)
+def post_sale(request):
+    posts = Post.objects.filter(seller='On Sale')
+    state = PostFilter(request.GET, queryset=posts)
     
-    return render(request, 'realestate/product_list.html', {'filter': state})
-    
+    return render(request, 'realestate/post_list.html', {'filter': state})
         
     
             

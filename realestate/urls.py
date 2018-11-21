@@ -9,5 +9,5 @@ urlpatterns = [
     path('post/<pk>/remove', views.post_delete, name='post_delete'), #url path to remove a post
     path(r'^post/(?P<pk>\d+)/comment/$', views.add_message, name='add_message'), #url path for consumer to send a message
     path('post/Thank_you', views.Thank_you, name='Thank_you'), #Thank you message after sending interest
-    path('', views.product_state, name='product_state'),
+    path('', views.post_sale, name='post_sale'),
 ]
